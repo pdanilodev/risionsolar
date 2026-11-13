@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  @apply bg-white text-navy font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #ff8a35;
+  color: #061536;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .section-y {
+    @apply py-20 sm:py-28;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em];
+  }
+  .h-display {
+    @apply font-display font-semibold tracking-tight;
+  }
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-sun-gradient text-navy shadow-glow hover:-translate-y-0.5 hover:shadow-[0_14px_44px_-8px_rgba(255,138,53,.7)] active:translate-y-0;
+  }
+  .btn-ghost-dark {
+    @apply btn border border-white/25 text-white hover:border-white/60 hover:bg-white/10;
+  }
+  .btn-ghost-light {
+    @apply btn border border-navy/15 text-navy hover:border-navy/40 hover:bg-navy/5;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 75%);
+  }
+  .field {
+    @apply w-full rounded-xl border border-navy/15 bg-white px-4 py-3.5 text-[15px] text-navy placeholder:text-navy/35 outline-none transition focus:border-sun focus:ring-4 focus:ring-sun/20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Fluxo de energia nas linhas do diagrama */
+.dash-flow { stroke-dasharray: 8 8; animation: dashmove 0.9s linear infinite; }
+@keyframes dashmove { to { stroke-dashoffset: -16; } }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: 22px; width: 22px; border-radius: 9999px; background: #FF8A35; border: 3px solid #fff; box-shadow: 0 2px 10px rgba(255,138,53,.6); }
+input[type="range"]::-moz-range-thumb { height: 22px; width: 22px; border-radius: 9999px; background: #FF8A35; border: 3px solid #fff; }
+
+/* Fluxo de energia nos conectores do diagrama */
+.flow-h {
+  background-image: repeating-linear-gradient(90deg, currentColor 0 8px, transparent 8px 16px);
+  background-size: 16px 100%;
+  animation: flowH 0.8s linear infinite;
+}
+.flow-v {
+  background-image: repeating-linear-gradient(180deg, currentColor 0 8px, transparent 8px 16px);
+  background-size: 100% 16px;
+  animation: flowV 0.8s linear infinite;
+}
+@keyframes flowH { to { background-position: 16px 0; } }
+@keyframes flowV { to { background-position: 0 16px; } }
