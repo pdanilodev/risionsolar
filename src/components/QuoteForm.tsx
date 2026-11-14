@@ -65,15 +65,31 @@ export function QuoteForm() {
     try {
       const { website, ...payload } = v;
       void website;
+      const isFormSubmit = site.formEndpoint.includes("formsubmit.co");
+      const data = isFormSubmit
+        ? {
+            // Campos em português para o e-mail ficar legível. "email" vira o responder-para.
+            _subject: `Novo orçamento solar: ${payload.name}`,
+            _template: "table",
+            _captcha: "false",
+            Nome: payload.name,
+            WhatsApp: payload.whatsapp,
+            email: payload.email,
+            Cidade: payload.city,
+            Estado: payload.uf,
+            "Tipo de imóvel": payload.type,
+            "Média da conta (R$)": payload.bill,
+            Mensagem: payload.message || "(sem mensagem)",
+          }
+        : { ...payload, source: "landing-page", sentAt: new Date().toISOString() };
       const res = await fetch(site.formEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...payload, source: "landing-page", sentAt: new Date().toISOString() }),
+        body: JSON.stringify(data),
       });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body?.error || "Não foi possível enviar agora.");
-      }
+      const body = await res.json().catch(() => ({}));
+      const failed = !res.ok || body?.success === false || body?.success === "false";
+      if (failed) throw new Error(body?.error || body?.message || "Não foi possível enviar agora.");
       setStatus("success");
       track("generate_lead", { property_type: v.type, uf: v.uf });
     } catch (err) {

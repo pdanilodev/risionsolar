@@ -25,11 +25,13 @@ export const site = {
   },
 
   /**
-   * Endpoint do formulário. Opções:
-   *  - rota interna /api/lead (requer LEAD_WEBHOOK_URL no servidor)
-   *  - serviço externo (Formspree, Getform, etc.) via NEXT_PUBLIC_FORM_ENDPOINT
+   * Destino do formulário: por padrão, e-mail via FormSubmit (sem conta).
+   * No primeiro envio o FormSubmit manda um e-mail de ativação para o endereço;
+   * clique no link uma vez e os próximos leads chegam normalmente.
+   * Alternativas via NEXT_PUBLIC_FORM_ENDPOINT: Formspree, ou "/api/lead" (webhook).
    */
-  formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "/api/lead",
+  formEndpoint:
+    process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "https://formsubmit.co/ajax/risionsolar@gmail.com",
 
   /** Google Analytics 4 (ex.: G-XXXXXXXXXX). Vazio = desativado. */
   gaId: process.env.NEXT_PUBLIC_GA_ID ?? "",
