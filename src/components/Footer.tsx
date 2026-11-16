@@ -5,10 +5,10 @@ import {
   Youtube,
   Mail,
   Phone,
-  MessageCircle,
   MapPin,
 } from "lucide-react";
 import { Logo } from "./Logo";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { site, whatsappLink } from "@/lib/site";
 
 const nav = [
@@ -31,6 +31,33 @@ export function Footer() {
 
   return (
     <footer className="bg-navy text-white">
+      <div className="container-x pt-16">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-navy-2 p-8 sm:p-12">
+          <div
+            className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#25D366]/20 blur-[80px]"
+            aria-hidden
+          />
+          <div className="relative flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+            <div>
+              <h2 className="h-display text-2xl sm:text-4xl">
+                Fale com a gente pelo WhatsApp
+              </h2>
+              <p className="mt-2 max-w-xl text-white/65">
+                Tire suas dúvidas e peça seu orçamento direto com a nossa
+                equipe.
+              </p>
+            </div>
+            <a
+              href={wa}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 py-5 text-lg font-bold text-white shadow-[0_12px_34px_-8px_rgba(37,211,102,.7)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+            >
+              <WhatsAppIcon size={28} /> Chamar no WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
       <div className="container-x grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1.2fr]">
         <div>
           <Logo className="h-9" />
@@ -85,7 +112,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 hover:text-white"
               >
-                <MessageCircle size={17} className="text-sun" /> Conversar no
+                <WhatsAppIcon size={17} className="text-sun" /> Conversar no
                 WhatsApp
               </a>
             </li>
