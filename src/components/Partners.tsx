@@ -111,22 +111,38 @@ function PartnerCard({ p }: { p: (typeof partners)[number] }) {
               </li>
             ))}
           </ul>
+        </div>
+      </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#orcamento" className="btn-primary">
-              Quero um projeto com essa parceria <ArrowRight size={18} />
+      {/* CTA centralizado */}
+      <div className="relative border-t border-white/10 px-6 pb-10 pt-8 text-center sm:px-12">
+        <p className="text-sm text-white/55">
+          Quer um sistema com equipamentos de qualidade?
+        </p>
+        <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href="#orcamento"
+            className="group/btn relative inline-flex w-full items-center justify-center gap-4 overflow-hidden rounded-full bg-sun-gradient py-3 pl-8 pr-3 text-base font-bold text-navy shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_-8px_rgba(255,138,53,.75)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sun sm:w-auto"
+          >
+            <span
+              className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform duration-700 group-hover/btn:translate-x-[300%]"
+              aria-hidden
+            />
+            <span className="relative">Quero um projeto com essa parceria</span>
+            <span className="relative grid h-10 w-10 place-items-center rounded-full bg-navy text-sun transition-transform duration-300 group-hover/btn:translate-x-1">
+              <ArrowRight size={20} />
+            </span>
+          </a>
+          {p.url && (
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost-dark !py-4"
+            >
+              Conhecer a {p.name.split(" ")[0]} <ArrowUpRight size={18} />
             </a>
-            {p.url && (
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ghost-dark"
-              >
-                Conhecer a {p.name.split(" ")[0]} <ArrowUpRight size={18} />
-              </a>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </div>
