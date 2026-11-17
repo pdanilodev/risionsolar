@@ -14,6 +14,7 @@ import { site, whatsappLink } from "@/lib/site";
 const nav = [
   { href: "/#como-funciona", label: "Como funciona" },
   { href: "/#etapas", label: "Como trabalhamos" },
+  { href: "/#parceiros", label: "Parceiros" },
   { href: "/#calculadora", label: "Calculadora" },
   { href: "/#pagamento", label: "Pagamento" },
   { href: "/#faq", label: "FAQ" },

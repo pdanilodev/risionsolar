@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { SunExplainer } from "@/components/SunExplainer";
 import { Process } from "@/components/Process";
+import { Partners } from "@/components/Partners";
 import { Calculator } from "@/components/Calculator";
 import { Payment } from "@/components/Payment";
 import { FAQ } from "@/components/FAQ";
@@ -27,6 +28,7 @@ export default function Home() {
         <Hero />
         <SunExplainer />
         <Process />
+        <Partners />
         <Calculator />
         <Payment />
         <FAQ />
